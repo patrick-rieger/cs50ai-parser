@@ -80,9 +80,8 @@ def np_chunk(tree):
 
     for noun_phrase in tree.subtrees(lambda t: t.label() == "NP"):
         containsNP = False
-        for _ in noun_phrase.subtrees(lambda t: t.label() == "NP" and t != noun_phrase):
+        if any(noun_phrase.subtrees(lambda t: t.label() == "NP" and t != noun_phrase)):
             containsNP = True
-            break
         if not containsNP:
             noun_phrase_chunks.append(noun_phrase)
     
